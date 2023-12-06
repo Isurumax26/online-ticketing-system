@@ -1,0 +1,66 @@
+-- Table: online_ticketing.booking
+
+-- DROP TABLE IF EXISTS online_ticketing.booking;
+
+CREATE TABLE IF NOT EXISTS online_ticketing.booking
+(
+    id bigint NOT NULL DEFAULT nextval('online_ticketing.booking_id_seq'::regclass),
+    booking_date date,
+    booking_status character varying(255) COLLATE pg_catalog."default",
+    num_of_tickets integer NOT NULL,
+    user_id bigint,
+    CONSTRAINT booking_pkey PRIMARY KEY (id),
+    CONSTRAINT fkkgseyy7t56x7lkjgu3wah5s3t FOREIGN KEY (user_id)
+        REFERENCES online_ticketing."user" (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT booking_booking_status_check CHECK (booking_status::text = ANY (ARRAY['ACTIVE'::character varying, 'CANCELLED'::character varying]::text[]))
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS online_ticketing.booking
+    OWNER to postgres;
+
+
+
+
+-- Table: online_ticketing.ticket
+
+-- DROP TABLE IF EXISTS online_ticketing.ticket;
+
+CREATE TABLE IF NOT EXISTS online_ticketing.ticket
+(
+    id bigint NOT NULL DEFAULT nextval('online_ticketing.ticket_id_seq'::regclass),
+    num_of_tickets integer NOT NULL,
+    price integer NOT NULL,
+    remaining_tickets integer NOT NULL,
+    CONSTRAINT ticket_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS online_ticketing.ticket
+    OWNER to postgres;
+
+
+-- Table: online_ticketing.user
+
+-- DROP TABLE IF EXISTS online_ticketing."user";
+
+CREATE TABLE IF NOT EXISTS online_ticketing."user"
+(
+    id bigint NOT NULL DEFAULT nextval('online_ticketing.user_id_seq'::regclass),
+    email character varying(255) COLLATE pg_catalog."default",
+    name character varying(255) COLLATE pg_catalog."default",
+    phone_no character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT user_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS online_ticketing."user"
+    OWNER to postgres;
+
+
+INSERT INTO user(id,email,name,phone_no) VALUES(3, 'iii3@gmail.com', jane, 1234556);
