@@ -19,18 +19,6 @@ public class Ticket {
     private int price;
 
 
-    @OneToMany(mappedBy = "ticket")
-    private Set<BookingTicket> bookingTickets;
-
-    @JsonManagedReference
-    public Set<BookingTicket> getBookingTickets() {
-        return bookingTickets;
-    }
-
-    public void setBookingTickets(Set<BookingTicket> bookingTickets) {
-        this.bookingTickets = bookingTickets;
-    }
-
     public Long getId() {
         return id;
     }

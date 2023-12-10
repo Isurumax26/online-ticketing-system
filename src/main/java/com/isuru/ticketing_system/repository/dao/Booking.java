@@ -23,18 +23,6 @@ public class Booking {
 
     private LocalDate bookingDate;
 
-    @OneToMany(mappedBy = "booking")
-    private Set<BookingTicket> bookingTickets;
-
-    @JsonManagedReference
-    public Set<BookingTicket> getBookingTickets() {
-        return bookingTickets;
-    }
-
-    public void setBookingTickets(Set<BookingTicket> bookingTickets) {
-        this.bookingTickets = bookingTickets;
-    }
-
     public Long getId() {
         return id;
     }

@@ -39,7 +39,7 @@ public class BookingTicket {
         this.bookingTicketId = bookingTicketId;
     }
 
-    @JsonBackReference
+
     public Booking getBooking() {
         return booking;
     }
@@ -48,7 +48,6 @@ public class BookingTicket {
         this.booking = booking;
     }
 
-    @JsonBackReference
     public Ticket getTicket() {
         return ticket;
     }
