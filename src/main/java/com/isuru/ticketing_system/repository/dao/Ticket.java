@@ -1,5 +1,6 @@
 package com.isuru.ticketing_system.repository.dao;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -17,9 +18,11 @@ public class Ticket {
 
     private int price;
 
+
     @OneToMany(mappedBy = "ticket")
     private Set<BookingTicket> bookingTickets;
 
+    @JsonManagedReference
     public Set<BookingTicket> getBookingTickets() {
         return bookingTickets;
     }
