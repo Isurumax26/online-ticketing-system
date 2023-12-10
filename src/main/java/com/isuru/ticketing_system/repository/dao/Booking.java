@@ -1,5 +1,7 @@
 package com.isuru.ticketing_system.repository.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -24,7 +26,7 @@ public class Booking {
     @OneToMany(mappedBy = "booking")
     private Set<BookingTicket> bookingTickets;
 
-
+    @JsonManagedReference
     public Set<BookingTicket> getBookingTickets() {
         return bookingTickets;
     }

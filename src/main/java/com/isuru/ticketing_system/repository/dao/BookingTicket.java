@@ -1,5 +1,6 @@
 package com.isuru.ticketing_system.repository.dao;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,6 +10,7 @@ public class BookingTicket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long bookingTicketId;
+
 
     @ManyToOne
     @JoinColumn(name = "booking_id")
@@ -37,6 +39,7 @@ public class BookingTicket {
         this.bookingTicketId = bookingTicketId;
     }
 
+    @JsonBackReference
     public Booking getBooking() {
         return booking;
     }
@@ -45,6 +48,7 @@ public class BookingTicket {
         this.booking = booking;
     }
 
+    @JsonBackReference
     public Ticket getTicket() {
         return ticket;
     }
