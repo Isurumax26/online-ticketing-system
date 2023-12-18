@@ -51,6 +51,8 @@ public class BookingService {
 
             Ticket ticket = ticketRepository.findById(ticketId).get();
 
+            // handle the error if remaining tickets are lesser than the ordered tickets
+
             BookingTicket bookingTicket = new BookingTicket();
             bookingTicket.setTicket(ticket);
             bookingTicket.setNumOfTickets(numOfTickets);
@@ -68,6 +70,14 @@ public class BookingService {
         userBooking.setUserBookings(bookingTickets);
         return userBooking;
 
+    }
+
+    public UserBooking getUserBookingById(long userId, long bookingId) {
+        UserBooking userBooking = new UserBooking();
+        List<BookingTicket> bookingTickets = bookingTicketRepository.findByUserAndBookingId(userId, bookingId);
+
+        userBooking.setUserBookings(bookingTickets);
+        return userBooking;
     }
 
 }

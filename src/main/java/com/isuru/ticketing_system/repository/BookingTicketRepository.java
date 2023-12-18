@@ -12,5 +12,8 @@ public interface BookingTicketRepository extends JpaRepository<BookingTicket, Lo
     @Query("SELECT a FROM BookingTicket a INNER JOIN a.booking b WHERE b.user.id = :userId")
     List<BookingTicket> findByUser(@Param("userId") Long userId);
 
+    @Query("SELECT a FROM BookingTicket a INNER JOIN a.booking b WHERE b.user.id = :userId AND b.id = :bookingId")
+    List<BookingTicket> findByUserAndBookingId(@Param("userId") Long userId, @Param("bookingId") Long bookingId);
+
 
 }

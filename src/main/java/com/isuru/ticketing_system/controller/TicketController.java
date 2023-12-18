@@ -38,4 +38,10 @@ public class TicketController {
         return new ResponseEntity<>(userBooking, HttpStatus.OK);
     }
 
+    @GetMapping("/{userId}/bookings/{bookingId}")
+    public ResponseEntity<UserBooking> getUserBookingById(@PathVariable Long userId, @PathVariable Long bookingId) {
+        UserBooking userBooking = bookingService.getUserBookingById(userId, bookingId);
+        return new ResponseEntity<>(userBooking, HttpStatus.OK);
+    }
+
 }
