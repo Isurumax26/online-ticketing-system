@@ -80,4 +80,13 @@ public class BookingService {
         return userBooking;
     }
 
+    public void deleteUserBookingById(long bookingId) {
+        bookingRepository.deleteById(bookingId);
+    }
+
+    public Booking getBookingById(long bookingId) {
+        Booking booking = bookingRepository.findById(bookingId).get();
+        return booking;
+    }
+
 }

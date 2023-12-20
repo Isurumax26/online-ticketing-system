@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,6 +18,9 @@ public class Booking {
     @ManyToOne
     private User user;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL)
+    private List<BookingTicket> bookingTicketList;
 
     @Enumerated(EnumType.STRING)
     private BookingStatus bookingStatus;
@@ -54,5 +58,13 @@ public class Booking {
 
     public void setBookingDate(LocalDate bookingDate) {
         this.bookingDate = bookingDate;
+    }
+
+    public List<BookingTicket> getBookingTicketList() {
+        return bookingTicketList;
+    }
+
+    public void setBookingTicketList(List<BookingTicket> bookingTicketList) {
+        this.bookingTicketList = bookingTicketList;
     }
 }
